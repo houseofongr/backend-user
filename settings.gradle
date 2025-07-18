@@ -1,1 +1,11 @@
 rootProject.name = 'backend-user'
+
+include 'modules:common'
+include 'modules:domain'
+include 'modules:api'
+include 'modules:infrastructure'
+include 'modules:application'
+include 'modules:adapters:in:web'
+include 'modules:adapters:out:id-gen'
+include 'modules:adapters:out:persistence'
+include 'modules:adapters:out:internal'
