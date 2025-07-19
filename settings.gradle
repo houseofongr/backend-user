@@ -1,4 +1,4 @@
-rootProject.name = 'backend-user'
+rootProject.name = 'user'
 
 include 'modules:common'
 include 'modules:domain'
@@ -9,3 +9,4 @@ include 'modules:adapters:in:web'
 include 'modules:adapters:out:id-gen'
 include 'modules:adapters:out:persistence'
 include 'modules:adapters:out:internal'
+include 'modules:test-support'
