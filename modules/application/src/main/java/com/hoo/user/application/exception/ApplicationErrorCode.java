@@ -23,7 +23,8 @@ import static org.springframework.http.HttpStatus.*;
 @AllArgsConstructor
 public enum ApplicationErrorCode implements ErrorCode {
 
-    UNAUTHORIZED_EMAIL("UNIVERSE-APPLICATION-1", UNAUTHORIZED, "인증되지 않은 이메일 주소입니다.");
+    UNAUTHORIZED_EMAIL("UNIVERSE-APPLICATION-1", UNAUTHORIZED, "인증되지 않은 이메일 주소입니다."),
+    INVALID_EMAIL_ADDRESS("UNIVERSE-APPLICATION-2", BAD_REQUEST, "잘못된 이메일 형식입니다.");
 
     private final String code;
     private final HttpStatus status;
