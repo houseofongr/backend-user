@@ -1,7 +1,7 @@
 package com.hoo.user.adapter.out.internal.api.auth;
 
 import com.hoo.common.internal.api.auth.RegisterBusinessUserCredentialAPI;
-import com.hoo.user.adapter.out.internal.api.InternalAPIProperties;
+import com.hoo.user.adapter.out.internal.api.InternalProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class RegisterBusinessUserCredentialWebClientAdapter implements RegisterBusinessUserCredentialAPI {
 
     private final WebClient webClient;
-    private final InternalAPIProperties properties;
+    private final InternalProperties properties;
 
     @Override
     public void saveBusinessUserPassword(String email, String password) {

@@ -3,7 +3,7 @@ package com.hoo.user.adapter.out.internal.api;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "internal")
-public record InternalAPIProperties(
+public record InternalProperties(
         Auth auth,
         File file
 ) {
