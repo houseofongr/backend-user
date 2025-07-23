@@ -9,4 +9,7 @@ include 'modules:adapters:in:web'
 include 'modules:adapters:out:id-gen'
 include 'modules:adapters:out:persistence'
 include 'modules:adapters:out:internal'
+include 'modules:adapters:out:cache'
 include 'modules:test-support'
+
+include 'modules:adapters:out:internal:in-api'

@@ -28,18 +28,22 @@ public class User {
         return new BusinessUserCreateEvent(
                 new User(userID,
                         new SensitiveInfo(null, email, null),
-                        new UserMetadata(termsOfUseConsent, personalInfoConsent, UserType.BUSINESS, UserStatus.NOT_APPROVED),
-                        new CommonMetadata(nickname, ZonedDateTime.now(), ZonedDateTime.now()),
+                        new UserMetadata(nickname, termsOfUseConsent, personalInfoConsent, UserType.BUSINESS, UserStatus.NOT_APPROVED),
+                        new CommonMetadata(ZonedDateTime.now(), ZonedDateTime.now()),
                         List.of())
         );
     }
 
-    public BusinessUserApproveEvent approve() {
+    public static User load(UserID id, SensitiveInfo sensitiveInfo, UserMetadata userMetadata, CommonMetadata commonMetadata, List<SnsAccount> snsAccounts) {
+        return new User(id, sensitiveInfo, userMetadata, commonMetadata, snsAccounts);
+    }
 
-        this.userMetadata = userMetadata.approve();
+    public BusinessUserApproveEvent approve(Boolean approve) {
+
+        this.userMetadata = approve? userMetadata.approve() : userMetadata.reject();
         this.commonMetadata = commonMetadata.update();
 
-        return new BusinessUserApproveEvent(id, commonMetadata.getUpdatedTime());
+        return new BusinessUserApproveEvent(id, userMetadata.getStatus(), commonMetadata.getUpdatedTime());
     }
 
     public record UserID(UUID uuid) {

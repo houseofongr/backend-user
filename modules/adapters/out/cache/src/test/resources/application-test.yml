@@ -1,0 +1,12 @@
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6380
+
+email:
+  authn:
+    code:
+      ttl: 600
+    status:
+      ttl: 3600

@@ -1,0 +1,30 @@
+package com.hoo.user.adapter.out.internal.api;
+
+import com.hoo.user.adapter.out.internal.api.auth.RegisterBusinessUserCredentialWebClientAdapter;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@Configuration
+@EnableConfigurationProperties(InternalAPIProperties.class)
+public class InternalAPIConfig {
+
+    @Bean
+    public RegisterBusinessUserCredentialWebClientAdapter saveBusinessUserCredentialWebClientAdapter(
+            WebClient authWebClient,
+            InternalAPIProperties properties
+    ) {
+
+        return new RegisterBusinessUserCredentialWebClientAdapter(authWebClient, properties);
+    }
+
+    @Bean
+    public WebClient authWebClient(InternalAPIProperties properties) {
+
+        return WebClient.builder()
+                .baseUrl(properties.auth().baseUrl())
+                .build();
+    }
+
+}

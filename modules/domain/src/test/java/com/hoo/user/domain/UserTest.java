@@ -33,7 +33,7 @@ class UserTest {
         assertThat(user.getUserMetadata().getType()).isEqualTo(UserType.BUSINESS);
         assertThat(user.getUserMetadata().getTermsOfUseConsent()).isTrue();
         assertThat(user.getUserMetadata().getPersonalInfoConsent()).isTrue();
-        assertThat(user.getCommonMetadata().getNickname()).isEqualTo("leaf");
+        assertThat(user.getUserMetadata().getNickname()).isEqualTo("leaf");
         assertThat(user.getSnsAccounts()).isEmpty();
     }
     
@@ -42,13 +42,17 @@ class UserTest {
     void approveBusinessUser() {
         // given
         User businessUser = defaultBusinessUser().build();
+        User businessUser2 = defaultBusinessUser().build();
         ZonedDateTime now = ZonedDateTime.now();
 
         // when
-        BusinessUserApproveEvent event = businessUser.approve();
+        BusinessUserApproveEvent event = businessUser.approve(true);
+        BusinessUserApproveEvent event2 = businessUser2.approve(false);
 
         // then
         assertThat(event.userID()).isEqualTo(businessUser.getId());
+        assertThat(event.status()).isEqualTo(UserStatus.ACTIVATE);
+        assertThat(event2.status()).isEqualTo(UserStatus.REJECTED);
         assertThat(event.approveAt()).isAfter(now);
     }
 

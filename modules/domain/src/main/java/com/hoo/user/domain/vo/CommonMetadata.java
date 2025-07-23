@@ -9,11 +9,10 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class CommonMetadata {
 
-    private final String nickname;
     private final ZonedDateTime createdTime;
     private final ZonedDateTime updatedTime;
 
     public CommonMetadata update() {
-        return new CommonMetadata(nickname, createdTime, ZonedDateTime.now());
+        return new CommonMetadata(createdTime, ZonedDateTime.now());
     }
 }
