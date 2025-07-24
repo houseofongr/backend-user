@@ -33,6 +33,6 @@ class CreateBusinessUserServiceTest {
 
         // then
         verify(handleUserEventPort, times(1)).handleBusinessUserCreate(any());
-        verify(registerBusinessUserCredentialAPI, times(1)).saveBusinessUserPassword("test@example.com", "test2143!");
+        verify(registerBusinessUserCredentialAPI, times(1)).registerBusinessUserCredential("test@example.com", "test2143!");
     }
 }

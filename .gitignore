@@ -36,3 +36,4 @@ bin/
 config/**
 *config*.yml
 !config/application*.yml
+.env*

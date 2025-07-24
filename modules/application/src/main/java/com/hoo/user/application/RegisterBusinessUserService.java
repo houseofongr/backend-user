@@ -42,7 +42,7 @@ public class RegisterBusinessUserService implements RegisterBusinessUserUseCase 
                 command.email());
 
         handleUserEventPort.handleBusinessUserCreate(event);
-        registerBusinessUserCredentialAPI.saveBusinessUserPassword(command.email(), command.password());
+        registerBusinessUserCredentialAPI.registerBusinessUserCredential(command.email(), command.password());
 
         User newUser = event.newBusinessUser();
 
