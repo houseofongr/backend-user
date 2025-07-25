@@ -2,7 +2,7 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"}
 
 bootJar {
-    archiveBaseName.set('user')
+    archiveBaseName.set('hoo-user')
     archiveVersion.set('1.0.0-SNAPSHOT')
     archiveClassifier.set('')
 }

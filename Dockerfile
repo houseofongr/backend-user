@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # copy jar file
-COPY modules/infrastructure/build/libs/user-*.jar app.jar
+COPY modules/infrastructure/build/libs/hoo-user-*.jar app.jar
 
 # entrypoint
 ENTRYPOINT ["java", "-jar", "app.jar"]
