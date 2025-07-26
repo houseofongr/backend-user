@@ -7,13 +7,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-public class CacheAdapterConfig {
+public class CacheConfig {
 
     @Bean
-    public RedisCacheAdapter redisCacheAdapter(
+    public RedisAdapter redisCacheAdapter(
             RedisTemplate<String, String> redisTemplate
     ) {
-        return new RedisCacheAdapter(redisTemplate);
+        return new RedisAdapter(redisTemplate);
     }
 
     @Bean

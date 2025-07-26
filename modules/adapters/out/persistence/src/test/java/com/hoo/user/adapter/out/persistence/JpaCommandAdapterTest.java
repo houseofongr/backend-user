@@ -1,6 +1,5 @@
-package com.hoo.user.adapter.out.persistence.command;
+package com.hoo.user.adapter.out.persistence;
 
-import com.hoo.user.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.user.adapter.out.persistence.entity.UserJpaEntity;
 import com.hoo.user.adapter.out.persistence.repository.UserJpaRepository;
 import com.hoo.user.domain.User;
@@ -19,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql("classpath:sql/user.sql")
 @PersistenceAdapterTest
-class HandleUserEventAdapterTest {
+class JpaCommandAdapterTest {
 
     @Autowired
-    HandleUserEventAdapter sut;
+    JpaCommandAdapter sut;
 
     @Autowired
     UserJpaRepository userJpaRepository;

@@ -1,6 +1,5 @@
-package com.hoo.user.adapter.out.persistence.command;
+package com.hoo.user.adapter.out.persistence;
 
-import com.hoo.user.adapter.out.persistence.UserMapper;
 import com.hoo.user.adapter.out.persistence.entity.UserJpaEntity;
 import com.hoo.user.adapter.out.persistence.repository.UserJpaRepository;
 import com.hoo.user.api.out.HandleUserEventPort;
@@ -11,10 +10,10 @@ import com.hoo.user.domain.event.BusinessUserCreateEvent;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class HandleUserEventAdapter implements HandleUserEventPort {
+public class JpaCommandAdapter implements HandleUserEventPort {
 
     private final UserJpaRepository userJpaRepository;
-    private final UserMapper userMapper;
+    private final PersistenceMapper persistenceMapper;
 
     @Override
     public void handleBusinessUserCreate(BusinessUserCreateEvent event) {

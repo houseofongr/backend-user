@@ -12,7 +12,7 @@ import com.hoo.user.domain.vo.UserMetadata;
 
 import java.util.List;
 
-public class UserMapper {
+public class PersistenceMapper {
 
     public User mapToBusinessUser(UserJpaEntity userJpaEntity) {
 

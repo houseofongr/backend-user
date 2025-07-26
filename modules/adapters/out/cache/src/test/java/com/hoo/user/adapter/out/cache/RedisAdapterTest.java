@@ -13,10 +13,10 @@ import static com.hoo.common.enums.CacheKeys.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RedisTest
-class RedisCacheAdapterTest {
+class RedisAdapterTest {
 
     @Autowired
-    RedisCacheAdapter sut;
+    RedisAdapter sut;
 
     @Autowired
     RedisTemplate<String, String> redisTemplate;

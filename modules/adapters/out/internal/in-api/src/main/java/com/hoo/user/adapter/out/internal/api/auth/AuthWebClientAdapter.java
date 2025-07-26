@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @RequiredArgsConstructor
-public class RegisterBusinessUserCredentialWebClientAdapter implements RegisterBusinessUserCredentialAPI {
+public class AuthWebClientAdapter implements RegisterBusinessUserCredentialAPI {
 
     private final WebClient webClient;
     private final InternalProperties properties;

@@ -1,9 +1,6 @@
 package com.hoo.user.adapter.out.persistence;
 
-import com.hoo.user.adapter.out.persistence.command.HandleUserEventAdapter;
 import com.hoo.user.adapter.out.persistence.config.HibernateCustomNamingStrategy;
-import com.hoo.user.adapter.out.persistence.query.LoadUserAdapter;
-import com.hoo.user.adapter.out.persistence.query.QueryUserAdapter;
 import com.hoo.user.adapter.out.persistence.repository.UserJpaRepository;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -17,32 +14,24 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PersistenceConfig {
 
     @Bean
-    HandleUserEventAdapter handleUserEventAdapter(
+    JpaCommandAdapter jpaCommandAdapter(
             UserJpaRepository userJpaRepository,
-            UserMapper userMapper
+            PersistenceMapper persistenceMapper
     ) {
-        return new HandleUserEventAdapter(userJpaRepository, userMapper);
+        return new JpaCommandAdapter(userJpaRepository, persistenceMapper);
     }
 
     @Bean
-    public QueryUserAdapter queryUserAdapter(
+    public JpaQueryAdapter jpaQueryAdapter(
             UserJpaRepository userJpaRepository,
-            UserMapper userMapper
+            PersistenceMapper persistenceMapper
     ) {
-        return new QueryUserAdapter(userJpaRepository, userMapper);
+        return new JpaQueryAdapter(userJpaRepository, persistenceMapper);
     }
 
     @Bean
-    public LoadUserAdapter loadUserAdapter(
-            UserJpaRepository userJpaRepository,
-            UserMapper userMapper
-    ) {
-        return new LoadUserAdapter(userJpaRepository, userMapper);
-    }
-
-    @Bean
-    public UserMapper userMapper() {
-        return new UserMapper();
+    public PersistenceMapper userMapper() {
+        return new PersistenceMapper();
     }
 
     @Bean

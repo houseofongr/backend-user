@@ -10,7 +10,7 @@ import java.util.Objects;
 import static com.hoo.common.enums.CacheKeys.*;
 
 @RequiredArgsConstructor
-public class RedisCacheAdapter implements LoadEmailAuthnPort {
+public class RedisAdapter implements LoadEmailAuthnPort {
 
     private final RedisTemplate<String, String> redisTemplate;
 

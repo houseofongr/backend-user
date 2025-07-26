@@ -29,7 +29,6 @@ public class RegisterBusinessUserService implements RegisterBusinessUserUseCase 
 
     @Override
     public RegisterBusinessUserResult create(RegisterBusinessUserCommand command) {
-
         if (!loadEmailAuthnPort.isAuthenticated(command.email()))
             throw new UserApplicationException(ApplicationErrorCode.UNAUTHORIZED_EMAIL);
 

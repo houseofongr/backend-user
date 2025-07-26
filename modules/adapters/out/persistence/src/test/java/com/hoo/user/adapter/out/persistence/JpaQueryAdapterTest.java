@@ -1,8 +1,8 @@
-package com.hoo.user.adapter.out.persistence.query;
+package com.hoo.user.adapter.out.persistence;
 
 import com.hoo.common.internal.api.user.dto.UserInfo;
-import com.hoo.user.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.user.adapter.out.persistence.repository.UserJpaRepository;
+import com.hoo.user.domain.User;
 import com.hoo.user.domain.vo.UserStatus;
 import com.hoo.user.domain.vo.UserType;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -19,13 +18,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql("classpath:sql/user.sql")
 @PersistenceAdapterTest
-class QueryUserAdapterTest {
+class JpaQueryAdapterTest {
 
     @Autowired
-    QueryUserAdapter sut;
+    JpaQueryAdapter sut;
 
     @Autowired
     UserJpaRepository userJpaRepository;
+
+    @Test
+    @DisplayName("비즈니스 사용자 로드 테스트")
+    void loadUser() {
+        // given
+        UUID userID = userJpaRepository.findUuidById((1L));
+
+        // when
+        User user = sut.loadBusinessUser(userID);
+
+        // then
+        assertThat(user.getId().uuid()).isEqualTo(userID);
+    }
 
     @Test
     @DisplayName("닉네임 존재여부 확인")
