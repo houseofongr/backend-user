@@ -21,7 +21,6 @@ public class JpaQueryAdapter implements LoadUserPort, QueryUserPort, FindUserInf
 
     @Override
     public User loadBusinessUser(UUID userID) {
-
         UserJpaEntity userJpaEntity = userJpaRepository.findByUuid(userID)
                 .orElseThrow(() -> new UserAdapterException(AdapterErrorCode.USER_NOT_FOUND));
 
@@ -35,7 +34,6 @@ public class JpaQueryAdapter implements LoadUserPort, QueryUserPort, FindUserInf
 
     @Override
     public UserInfo findUserInfo(UUID userID) {
-
         UserJpaEntity userJpaEntity = userJpaRepository.findByUuid(userID)
                 .orElseThrow(() -> new UserAdapterException(AdapterErrorCode.USER_NOT_FOUND));
 

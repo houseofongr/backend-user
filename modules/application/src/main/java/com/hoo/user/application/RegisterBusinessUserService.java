@@ -6,7 +6,7 @@ import com.hoo.user.api.in.dto.RegisterBusinessUserCommand;
 import com.hoo.user.api.in.dto.RegisterBusinessUserResult;
 import com.hoo.user.api.in.RegisterBusinessUserUseCase;
 import com.hoo.user.api.out.LoadEmailAuthnPort;
-import com.hoo.user.api.out.HandleUserEventPort;
+import com.hoo.user.api.out.SaveUserPort;
 import com.hoo.user.application.exception.ApplicationErrorCode;
 import com.hoo.user.application.exception.UserApplicationException;
 import com.hoo.user.domain.User;
@@ -24,7 +24,7 @@ public class RegisterBusinessUserService implements RegisterBusinessUserUseCase 
 
     private final IssueIDPort issueIDPort;
     private final LoadEmailAuthnPort loadEmailAuthnPort;
-    private final HandleUserEventPort handleUserEventPort;
+    private final SaveUserPort saveUserPort;
     private final RegisterBusinessUserCredentialAPI registerBusinessUserCredentialAPI;
 
     @Override
@@ -40,7 +40,7 @@ public class RegisterBusinessUserService implements RegisterBusinessUserUseCase 
                 command.nickname(),
                 command.email());
 
-        handleUserEventPort.handleBusinessUserCreate(event);
+        saveUserPort.saveBusinessUser(event);
         registerBusinessUserCredentialAPI.registerBusinessUserCredential(command.email(), command.password());
 
         User newUser = event.newBusinessUser();

@@ -2,7 +2,7 @@ package com.hoo.user.application;
 
 import com.hoo.user.api.in.dto.ApproveBusinessUserResult;
 import com.hoo.user.api.in.ApproveBusinessUserUseCase;
-import com.hoo.user.api.out.HandleUserEventPort;
+import com.hoo.user.api.out.UpdateUserStatusPort;
 import com.hoo.user.api.out.LoadUserPort;
 import com.hoo.user.domain.User;
 import com.hoo.user.domain.event.BusinessUserApproveEvent;
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class ApproveBusinessUserService implements ApproveBusinessUserUseCase {
 
     private final LoadUserPort loadUserPort;
-    private final HandleUserEventPort handleUserEventPort;
+    private final UpdateUserStatusPort updateUserStatusPort;
 
     @Override
     public ApproveBusinessUserResult approve(UUID userID, Boolean approve) {
@@ -26,7 +26,7 @@ public class ApproveBusinessUserService implements ApproveBusinessUserUseCase {
         User businessUser = loadUserPort.loadBusinessUser(userID);
         BusinessUserApproveEvent event = businessUser.approve(approve);
 
-        handleUserEventPort.handleBusinessUserApprove(event);
+        updateUserStatusPort.updateBusinessUserApprove(event);
 
         return new ApproveBusinessUserResult(
                 businessUser.getId().uuid(),

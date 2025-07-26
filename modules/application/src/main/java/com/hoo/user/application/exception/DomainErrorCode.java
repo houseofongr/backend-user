@@ -23,7 +23,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 @AllArgsConstructor
 public enum DomainErrorCode implements ErrorCode {
 
-    OVERLAPPED("UNIVERSE-DOMAIN-1", BAD_REQUEST, "내부의 다른 요소와 충돌했습니다.");
+    OVERLAPPED("AUTH-DOMAIN-1", BAD_REQUEST, "내부의 다른 요소와 충돌했습니다.");
 
     private final String code;
     private final HttpStatus status;

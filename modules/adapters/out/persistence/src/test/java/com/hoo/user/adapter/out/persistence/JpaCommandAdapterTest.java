@@ -36,7 +36,7 @@ class JpaCommandAdapterTest {
         BusinessUserCreateEvent event = new BusinessUserCreateEvent(user);
 
         // when
-        sut.handleBusinessUserCreate(event);
+        sut.saveBusinessUser(event);
 
         // then
         assertThat(userJpaRepository.findByUuid(user.getId().uuid())).isPresent();
@@ -57,8 +57,8 @@ class JpaCommandAdapterTest {
         BusinessUserApproveEvent event2 = user2.approve(false);
 
         // when
-        sut.handleBusinessUserApprove(event);
-        sut.handleBusinessUserApprove(event2);
+        sut.updateBusinessUserApprove(event);
+        sut.updateBusinessUserApprove(event2);
         UserJpaEntity userJpaEntity = userJpaRepository.findByUuid(user.getId().uuid()).orElseThrow();
         UserJpaEntity userJpaEntity2 = userJpaRepository.findByUuid(user2.getId().uuid()).orElseThrow();
 

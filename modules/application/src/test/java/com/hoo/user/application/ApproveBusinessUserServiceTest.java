@@ -1,7 +1,7 @@
 package com.hoo.user.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.user.api.out.HandleUserEventPort;
+import com.hoo.user.api.out.UpdateUserStatusPort;
 import com.hoo.user.api.out.LoadUserPort;
 import com.hoo.user.test.domain.UserTestData;
 import org.junit.jupiter.api.DisplayName;
@@ -14,9 +14,9 @@ import static org.mockito.Mockito.*;
 class ApproveBusinessUserServiceTest {
 
     LoadUserPort loadUserPort = mock();
-    HandleUserEventPort handleUserEventPort = mock();
+    UpdateUserStatusPort updateUserStatusPort = mock();
 
-    ApproveBusinessUserService sut = new ApproveBusinessUserService(loadUserPort, handleUserEventPort);
+    ApproveBusinessUserService sut = new ApproveBusinessUserService(loadUserPort, updateUserStatusPort);
 
     @Test
     @DisplayName("비즈니스 유저 승인 서비스")
@@ -29,6 +29,6 @@ class ApproveBusinessUserServiceTest {
         sut.approve(userID, true);
 
         // then
-        verify(handleUserEventPort, times(1)).handleBusinessUserApprove(any());
+        verify(updateUserStatusPort, times(1)).updateBusinessUserApprove(any());
     }
 }

@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.*;
  *     <li>Bad Request(400) : 1 ~ 99</li>
  *     <li>Authentication(401) : 100 ~ 199</li>
  *     <li>Not Found(404) : 300 ~ 399</li>
- *     <li>Conflict(405) : 400 ~ 499</li>
+ *     <li>Conflict(409) : 400 ~ 499</li>
  *     <li>Internal Server Error(500) : 500 ~ 599</li>
  *     <li>Etc : 600 ~</li>
  * </ul>
@@ -23,9 +23,11 @@ import static org.springframework.http.HttpStatus.*;
 @AllArgsConstructor
 public enum AdapterErrorCode implements ErrorCode {
 
-    USER_NOT_FOUND("UNIVERSE-PRESENTATION-300", NOT_FOUND, "해당 유저를 찾을 수 없습니다."),
+    USER_NOT_FOUND("USER-PERSISTENCE-300", NOT_FOUND, "해당 유저를 찾을 수 없습니다."),
 
-    LOAD_ENTITY_FAILED_BY_DOMAIN_ID("UNIVERSE-PRESENTATION-500", INTERNAL_SERVER_ERROR, "도메인 객체의 ID를 통해 엔티티를 불러오는데 실패했습니다.");
+    USER_NAME_DUPLICATE("USER-PERSISTENCE-400", CONFLICT, "이미 사용중인 닉네임입니다."),
+
+    LOAD_ENTITY_FAILED_BY_DOMAIN_ID("USER-PERSISTENCE-500", INTERNAL_SERVER_ERROR, "도메인 객체의 ID를 통해 엔티티를 불러오는데 실패했습니다.");
 
     private final String code;
     private final HttpStatus status;
